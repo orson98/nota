@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../nota/img/">
+    <title>Calculadora Espacial de Notas</title>
+    <style>
+        body {
+            background-image: url(https://wallpapers.com/images/hd/cute-cool-ps4-astro-bot-waving-with-right-hand-j0e8t9094f20sba4.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: none;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', Arial, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-end;  
+            align-items: center;
+            color: white;
+            
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            margin: 3rem;
+            padding: 30px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        input[type="number"] {
+            
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #00bcd4;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            background: linear-gradient(45deg, #2196F3, #00BCD4);
+            color: white;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #00BCD4, #2196F3);
+            transform: scale(1.05);
+        }
+
+        .resultado {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Animación de fondo con estrellas */
+        @keyframes moverEstrellas {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: -10000px 5000px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <h1>Calculadora Espacial de Notas 🚀</h1>
+        <input type="number" id="promedioActual" placeholder="Ingresa tu promedio actual" min="0" max="20" step="0.1">
+        <button onclick="calcularNota()">Calcular Nota Necesaria</button>
+        <div class="resultado" id="resultado"></div>
+    </div>
+    
+    <script>
+        function calcularNota() {
+            // Obtener los valores ingresados
+            var notaActual = parseFloat(document.getElementById('notaActual').value);
+            var pesoNotaActual = parseFloat(document.getElementById('pesoNotaActual').value) / 100;
+            var notaMinima = 12;
+            var pesoEvaluacionRestante = 1 - pesoNotaActual;
+
+            // Calcular la nota que necesitas
+            var notaNecesaria = (notaMinima - (notaActual * pesoNotaActual)) / pesoEvaluacionRestante;
+
+            // Mostrar el resultado
+            if (isNaN(notaNecesaria) || notaNecesaria < 0) {
+                document.getElementById('resultado').innerHTML = "Por favor, ingresa valores válidos.";
+            } else {
+                document.getElementById('resultado').innerHTML = "Necesitas sacar al menos: " + notaNecesaria.toFixed(2);
+            }
+        }
+    </script>
+</body>
+</html>
