@@ -15,14 +15,14 @@
 <meta property="og:url" content="https://metatags.io/" />
 <meta property="og:title" content="WALIE- Te ayudara con tu nota .😎" />
 <meta property="og:description" content="calcula tu nota mano " />
-<meta property="og:image" content="https://orson98.github.io/nota/" />
+<meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content="https://metatags.io/" />
 <meta property="twitter:title" content="WALIE- Te ayudara con tu nota .😎" />
 <meta property="twitter:description" content="calcula tu nota mano " />
-<meta property="twitter:image" content="https://orson98.github.io/nota/" />
+<meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
 
 <!-- Meta Tags Generated with https://metatags.io -->
     <style>
@@ -113,28 +113,32 @@
 
     <div class="container">
         <h1>Calculadora Espacial de Notas 🚀</h1>
-        <input type="number" id="promedioActual" placeholder="Ingresa tu promedio actual" min="0" max="20" step="0.1">
-        <input type="number" id="promedioDeseado" placeholder="Ingresa tu promedio  deseado" min="0" max="20" step="0.1">
-        <button onclick="calcularNota()">Calcular Nota Necesaria</button>
+        <input type="number" id="nota1" placeholder="Ingresa la primera nota" min="0" max="20">
+        <input type="number" id="nota2" placeholder="Ingresa la segunda nota" min="0" max="20">
+        <button onclick="calcularNota()">Calcular</button>
         <div class="resultado" id="resultado"></div>
     </div>
-    
+
     <script>
         function calcularNota() {
-            // Obtener los valores ingresados
-            var notaActual = parseFloat(document.getElementById('notaActual').value);
-            var pesoNotaActual = parseFloat(document.getElementById('pesoNotaActual').value) / 100;
-            var notaMinima = 12;
-            var pesoEvaluacionRestante = 1 - pesoNotaActual;
-
-            // Calcular la nota que necesitas
-            var notaNecesaria = (notaMinima - (notaActual * pesoNotaActual)) / pesoEvaluacionRestante;
-
-            // Mostrar el resultado
-            if (isNaN(notaNecesaria) || notaNecesaria < 0) {
-                document.getElementById('resultado').innerHTML = "Por favor, ingresa valores válidos.";
+            const nota1 = parseFloat(document.getElementById('nota1').value);
+            const nota2 = parseFloat(document.getElementById('nota2').value);
+            const minimoAprobado = 12;
+    
+            if (isNaN(nota1) || isNaN(nota2)) {
+                document.getElementById('resultado').innerText = "🛸 Ingresa ambas notas para despegar.";
+                return;
+            }
+    
+            const sumaActual = nota1 + nota2;
+            const notaFaltante = (minimoAprobado * 3) - sumaActual;
+    
+            if (notaFaltante <= 20) {
+                document.getElementById('resultado').innerText = 
+                    `🌟 Necesitas al menos ${notaFaltante.toFixed(2)} en la tercera nota para aprobar.`;
             } else {
-                document.getElementById('resultado').innerHTML = "Necesitas sacar al menos: " + notaNecesaria.toFixed(2);
+                document.getElementById('resultado').innerText = 
+                    "🚫 No es posible aprobar incluso con la máxima nota en la tercera evaluación.";
             }
         }
     </script>
