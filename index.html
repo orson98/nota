@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../nota/img/">
-    <title>Calculadora Espacial de Notas</title>
+    <title>Calculadora Espacial de Notas 😎</title>
     <!-- Primary Meta Tags -->
     <title>WALIE- Te ayudara con tu nota .😎</title>
+    <link rel="stylesheet" href="./inde.css">
     <meta name="title" content="WALIE- Te ayudara con tu nota .😎" />
 <meta name="description" content="calcula tu nota mano " />
 
@@ -25,121 +26,47 @@
 <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
 
 <!-- Meta Tags Generated with https://metatags.io -->
-    <style>
-        body {
-            background-image: url(https://wallpapers.com/images/hd/cute-cool-ps4-astro-bot-waving-with-right-hand-j0e8t9094f20sba4.jpg);
-            background-size: cover;
-            background-position: center;
-            background-repeat: none;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', Arial, sans-serif;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: flex-end;  
-            align-items: center;
-            color: white;
-            
-        }
-
-        .container {
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            margin: 3rem;
-            padding: 30px;
-            text-align: center;
-            width: 350px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-        }
-
-        h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-        }
-
-        input[type="number"] {
-            
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 2px solid #00bcd4;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 15px;
-            border: none;
-            background: linear-gradient(45deg, #2196F3, #00BCD4);
-            color: white;
-            font-size: 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s ease-in-out, transform 0.2s ease;
-        }
-
-        button:hover {
-            background: linear-gradient(45deg, #00BCD4, #2196F3);
-            transform: scale(1.05);
-        }
-
-        .resultado {
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-        }
-
-        /* Animación de fondo con estrellas */
-        @keyframes moverEstrellas {
-            from {
-                background-position: 0 0;
-            }
-            to {
-                background-position: -10000px 5000px;
-            }
-        }
-    </style>
 </head>
 <body>
 
 
     <div class="container">
-        <h1>Calculadora Espacial de Notas 🚀</h1>
-        <input type="number" id="nota1" placeholder="Ingresa la primera nota" min="0" max="20">
-        <input type="number" id="nota2" placeholder="Ingresa la segunda nota" min="0" max="20">
-        <button onclick="calcularNota()">Calcular</button>
+        <h1>🚀 Calculadora Espacial de Notas 🚀</h1>
+        <input type="number" id="nota1" placeholder="Nota 1 (10%)" min="0" max="20">
+        <input type="number" id="nota2" placeholder="Nota 2 (10%)" min="0" max="20">
+        <input type="number" id="nota3" placeholder="Nota 3 (10%)" min="0" max="20">
+        <input type="number" id="nota4" placeholder="Nota 4 (10%)" min="0" max="20">
+        <input type="number" id="parcial" placeholder="Nota Parcial (30%)" min="0" max="20">
+        <input type="number" id="final" placeholder="Nota Final (30%)" min="0" max="20">
+        <button onclick="calcularNotas()">Calcular Promedio</button>
         <div class="resultado" id="resultado"></div>
     </div>
-    
-    <script>
-        function calcularNota() {
-            const nota1 = parseFloat(document.getElementById('nota1').value);
-            const nota2 = parseFloat(document.getElementById('nota2').value);
-            const minimoAprobado = 12;
-    
-            if (isNaN(nota1) || isNaN(nota2)) {
-                document.getElementById('resultado').innerText = "🛸 Ingresa ambas notas para despegar.";
-                return;
-            }
-    
-            const sumaActual = nota1 + nota2;
-            const notaFaltante = (minimoAprobado * 3) - sumaActual;
-    
-            if (notaFaltante <= 20) {
-                document.getElementById('resultado').innerText = 
-                    `🌟 Necesitas al menos ${notaFaltante.toFixed(2)} en la tercera nota para aprobar.`;
+
+<script>
+        function calcularNotas() {
+            const nota1 = parseFloat(document.getElementById('nota1').value) || 0;
+            const nota2 = parseFloat(document.getElementById('nota2').value) || 0;
+            const nota3 = parseFloat(document.getElementById('nota3').value) || 0;
+            const nota4 = parseFloat(document.getElementById('nota4').value) || 0;
+            const parcial = parseFloat(document.getElementById('parcial').value) || 0;
+            let final = parseFloat(document.getElementById('final').value) || 0;
+
+            const suma = (nota1 * 0.1) + (nota2 * 0.1) + (nota3 * 0.1) + (nota4 * 0.1) + (parcial * 0.3) + (final * 0.3);
+
+            let mensaje = `La suma de tus notas es: ${suma.toFixed(2)}`;
+
+            if (final === 0) {
+                const deseo = parseFloat(prompt("Ingresa la nota deseada para el final:")) || 0;
+                const p = deseo - suma;
+                const n = p / 0.3;
+                mensaje += `<br>Para alcanzar la nota deseada necesitas sacar: ${Math.ceil(n)} en el examen final.`;
+            } else if (suma >= 11.5) {
+                mensaje += `<br><span style="color: green;">¡Buen trabajo! Aprobaste.</span>`;
             } else {
-                document.getElementById('resultado').innerText = 
-                    "🚫 No es posible aprobar incluso con la máxima nota en la tercera evaluación.";
+                mensaje += `<br><span style="color: red;">Lamentablemente no alcanzaste el promedio mínimo para aprobar.</span>`;
             }
+
+            document.getElementById('resultado').innerHTML = mensaje;
         }
     </script>
 </body>
