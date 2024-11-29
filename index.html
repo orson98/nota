@@ -112,39 +112,35 @@
 
 
     <div class="container">
-        <h1>Calculadora de Nota Final 🚀</h1>
-        <input type="number" id="ac" placeholder="Ingresa nota acumulada" min="0" max="10">
-        <input type="number" id="nd" placeholder="Ingresa la nota deseada " min="0" max="20">
+        <h1>Calculadora Espacial de Notas 🚀</h1>
+        <input type="number" id="nota1" placeholder="Ingresa la primera nota" min="0" max="20">
+        <input type="number" id="nota2" placeholder="Ingresa la segunda nota" min="0" max="20">
         <button onclick="calcularNota()">Calcular</button>
         <div class="resultado" id="resultado"></div>
     </div>
     
+    <script>
+        function calcularNota() {
+            const nota1 = parseFloat(document.getElementById('nota1').value);
+            const nota2 = parseFloat(document.getElementById('nota2').value);
+            const minimoAprobado = 12;
     
-        <script>
-            function calcularNota() {
-                const ac = parseFloat(document.getElementById('ac').value); // Nota acumulada
-                const nd = parseFloat(document.getElementById('nd').value); // Nota deseada
-                const pesoFinal = 0.3; // Peso del examen frnal
-    
-                if (isNaN(ac) || isNaN(nd)) {
-                    document.getElementById('resultado').innerText = "🛸 Ingresa ambas notas para calcular.";
-                    return;
-                }
-    
-                const puntosNecesarios = nd - ac; // Diferenciaa entre la nota deseada y la acumulada
-                const notaFaltante = puntosNecesarios / pesoFinal; // Nota necesria en el examen final
-    
-                if (notaFaltante <= 10 && notaFaltante > 0) {
-                    document.getElementById('resultado').innerText = 
-                        `🌟 Necesitas al menos ${notaFaltante.toFixed(2)} en el examen final para lograr tu meta.`;
-                } else if (notaFaltante > 10) {
-                    document.getElementById('resultado').innerText = 
-                        "🚫 No es posible alcanzar la nota deseada con el peso restante.";
-                } else {
-                    document.getElementById('resultado').innerText = 
-                        "✅ Ya tienes la nota deseada o no necesitas más puntos.";
-                }
+            if (isNaN(nota1) || isNaN(nota2)) {
+                document.getElementById('resultado').innerText = "🛸 Ingresa ambas notas para despegar.";
+                return;
             }
-        </script>
+    
+            const sumaActual = nota1 + nota2;
+            const notaFaltante = (minimoAprobado * 3) - sumaActual;
+    
+            if (notaFaltante <= 20) {
+                document.getElementById('resultado').innerText = 
+                    `🌟 Necesitas al menos ${notaFaltante.toFixed(2)} en la tercera nota para aprobar.`;
+            } else {
+                document.getElementById('resultado').innerText = 
+                    "🚫 No es posible aprobar incluso con la máxima nota en la tercera evaluación.";
+            }
+        }
+    </script>
 </body>
 </html>
