@@ -29,7 +29,7 @@
 </head>
 <body>
 
-
+    
     <div class="container">
         <h1>🚀 Calculadora Espacial de Notas 🚀</h1>
         <input type="number" id="nota1" placeholder="Nota 1 (10%)" min="0" max="20">
@@ -40,6 +40,16 @@
         <input type="number" id="final" placeholder="Nota Final (30%)" min="0" max="20">
         <button onclick="calcularNotas()">Calcular Promedio</button>
         <div class="resultado" id="resultado"></div>
+    
+    </div>
+
+    <div id="modalAprobado" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <h2>¡Felicidades! 🎉</h2>
+            <p>Has aprobado con éxito.</p>
+            <img src="./gif/135d5f9bd4bf86909a9b5aee996a7441.gif" alt="">
+        </div>
     </div>
 
 <script>
@@ -62,11 +72,20 @@
                 mensaje += `<br>Para alcanzar la nota deseada necesitas sacar: ${Math.ceil(n)} en el examen final.`;
             } else if (suma >= 11.5) {
                 mensaje += `<br><span style="color: green;">¡Buen trabajo! Aprobaste.</span>`;
+                abrirModal(); 
             } else {
                 mensaje += `<br><span style="color: red;">Lamentablemente no alcanzaste el promedio mínimo para aprobar.</span>`;
             }
 
             document.getElementById('resultado').innerHTML = mensaje;
+        }
+
+        function abrirModal() {
+            document.getElementById('modalAprobado').style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('modalAprobado').style.display = 'none';
         }
     </script>
 </body>
