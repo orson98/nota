@@ -52,6 +52,11 @@
         </div>
     </div>
 
+    <audio id="audioAprobado">
+        <source src="./audio/It's Not Unusual.mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
+
 <script>
         function calcularNotas() {
             const nota1 = parseFloat(document.getElementById('nota1').value) || 0;
@@ -82,11 +87,15 @@
 
         function abrirModal() {
             document.getElementById('modalAprobado').style.display = 'flex';
+            document.getElementById('audioAprobado').play(); // Reproducir audio
         }
 
         function cerrarModal() {
             document.getElementById('modalAprobado').style.display = 'none';
+            document.getElementById('audioAprobado').pause(); // Pausar audio
+            document.getElementById('audioAprobado').currentTime = 0; // Reiniciar audio
         }
+        
     </script>
 </body>
 </html>
